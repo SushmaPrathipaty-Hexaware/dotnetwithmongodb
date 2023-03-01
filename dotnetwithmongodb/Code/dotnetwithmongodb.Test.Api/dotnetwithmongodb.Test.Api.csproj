@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\dotnetwithmongodb.Api\dotnetwithmongodb.Api.csproj" />
+    <ProjectReference Include="..\dotnetwithmongodb.Business\dotnetwithmongodb.Business.csproj" />
+    <ProjectReference Include="..\dotnetwithmongodb.Entities\dotnetwithmongodb.Entities.csproj" />
     <ProjectReference Include="..\dotnetwithmongodb.Test.Framework\dotnetwithmongodb.Test.Framework.csproj" />
   </ItemGroup>
 

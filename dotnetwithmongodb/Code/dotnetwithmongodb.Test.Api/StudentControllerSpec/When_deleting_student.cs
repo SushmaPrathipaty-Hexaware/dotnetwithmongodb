@@ -5,7 +5,7 @@ using NUnit.Framework;
 using NSubstitute;
 using Shouldly;
 using Microsoft.AspNetCore.Mvc;
-using dotnetwithmongodb.Entities.Entities;
+using dotnetwithmongodb.BusinessEntities.Entities;
 using dotnetwithmongodb.Api.Controllers;
 using dotnetwithmongodb.BusinessServices.Interfaces;
 

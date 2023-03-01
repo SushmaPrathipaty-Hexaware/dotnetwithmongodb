@@ -21,28 +21,28 @@ namespace dotnetwithmongodb.Api.Controllers
 
         // GET: api/Student
         [HttpGet]
-        public ActionResult<IEnumerable<Student>> Get()
+        public ActionResult<IEnumerable<StudentDto>> Get()
         {
             var StudentDTOs = _mapper.Map<IEnumerable<StudentDto>>(_StudentService.GetAll());
             return Ok(StudentDTOs);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Student> GetById(string id)
+        public ActionResult<StudentDto> GetById(string id)
         {
             var StudentDTO = _mapper.Map<StudentDto>(_StudentService.Get(id));
             return Ok(StudentDTO);
         }
 
         [HttpPost]
-        public ActionResult<Student> Save(Student Student)
+        public ActionResult<StudentDto> Save(Student Student)
         {
             var StudentDTOs = _mapper.Map<StudentDto>(_StudentService.Save(Student));
             return Ok(StudentDTOs);
         }
 
         [HttpPut("{id}")]
-        public ActionResult<Student> Update([FromRoute] string id, Student Student)
+        public ActionResult<StudentDto> Update([FromRoute] string id, Student Student)
         {
             var StudentDTOs = _mapper.Map<StudentDto>(_StudentService.Update(id, Student));
             return Ok(StudentDTOs);
@@ -51,7 +51,7 @@ namespace dotnetwithmongodb.Api.Controllers
         [HttpDelete("{id}")]
         public ActionResult<bool> Delete([FromRoute] string id)
         {
-            bool res = _mapper.Map<bool>(_StudentService.Delete(id));
+            bool res = _StudentService.Delete(id);
             if(res== false) return null;
             return Ok(res);
 

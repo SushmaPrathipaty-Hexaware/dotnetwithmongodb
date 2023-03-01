@@ -8,13 +8,16 @@ using Microsoft.AspNetCore.Mvc;
 using dotnetwithmongodb.BusinessEntities.Entities;
 using dotnetwithmongodb.Api.Controllers;
 using dotnetwithmongodb.BusinessServices.Interfaces;
+using dotnetwithmongodb.Contracts.DTO;
 
 namespace dotnetwithmongodb.Test.Api.StudentControllerSpec
 {
     public class When_updating_student : UsingStudentControllerSpec
     {
-        private ActionResult<Student > _result;
+        private ActionResult<StudentDto > _result;
         private Student _student;
+        private StudentDto _studentDto;
+
 
         public override void Context()
         {
@@ -24,9 +27,14 @@ namespace dotnetwithmongodb.Test.Api.StudentControllerSpec
             {
                 studentname = "studentname"
             };
+            _studentDto = new StudentDto
+            {
+                studentname = "studentname"
+            };
 
             _studentService.Update(_student.Id, _student).Returns(_student);
-            
+            _mapper.Map<StudentDto>(_student).Returns(_studentDto);
+
         }
         public override void Because()
         {
@@ -47,11 +55,11 @@ namespace dotnetwithmongodb.Test.Api.StudentControllerSpec
 
             var resultListObject = (_result.Result as OkObjectResult).Value;
 
-            resultListObject.ShouldBeOfType<Student>();
+            resultListObject.ShouldBeOfType<StudentDto>();
 
-            var resultList = resultListObject as Student;
+            var resultList = resultListObject as StudentDto;
 
-            resultList.ShouldBe(_student);
+            resultList.ShouldBe(_studentDto);
         }
     }
 }

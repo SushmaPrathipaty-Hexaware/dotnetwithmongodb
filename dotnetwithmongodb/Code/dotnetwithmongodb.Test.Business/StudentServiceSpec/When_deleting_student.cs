@@ -4,7 +4,7 @@ using System.Text;
 using NUnit.Framework;
 using NSubstitute;
 using Shouldly;
-using dotnetwithmongodb.Entities.Entities;
+using dotnetwithmongodb.BusinessEntities.Entities;
 
 namespace dotnetwithmongodb.Test.Business.StudentServiceSpec
 {

@@ -8,12 +8,16 @@ using Microsoft.AspNetCore.Mvc;
 using dotnetwithmongodb.BusinessEntities.Entities;
 using dotnetwithmongodb.Api.Controllers;
 using dotnetwithmongodb.BusinessServices.Interfaces;
+using dotnetwithmongodb.Contracts.DTO;
 
 namespace dotnetwithmongodb.Test.Api.StudentControllerSpec
 {
     public class When_getting_all_student : UsingStudentControllerSpec
     {
-        private ActionResult<IEnumerable<Student>> _result;
+        private ActionResult<IEnumerable<StudentDto>> _result;
+
+        private IEnumerable<StudentDto> _all_studentDto;
+        private StudentDto _studentDto;
 
         private IEnumerable<Student> _all_student;
         private Student _student;
@@ -22,12 +26,18 @@ namespace dotnetwithmongodb.Test.Api.StudentControllerSpec
         {
             base.Context();
 
-            _student = new Student{
+            _studentDto = new StudentDto{
+                studentname = "studentname"
+            };
+            _student = new Student
+            {
                 studentname = "studentname"
             };
 
-            _all_student = new List<Student> { _student};
+            _all_studentDto = new List<StudentDto> { _studentDto};
+            _all_student = new List<Student> { _student };
             _studentService.GetAll().Returns(_all_student);
+            _mapper.Map<IEnumerable<StudentDto>>(_all_student).Returns(_all_studentDto);
         }
         public override void Because()
         {
@@ -48,13 +58,13 @@ namespace dotnetwithmongodb.Test.Api.StudentControllerSpec
 
             var resultListObject = (_result.Result as OkObjectResult).Value;
 
-            resultListObject.ShouldBeOfType<List<Student>>();
+            resultListObject.ShouldBeOfType<List<StudentDto>>();
 
-            List<Student> resultList = resultListObject as List<Student>;
+            List<StudentDto> resultList = resultListObject as List<StudentDto>;
 
             resultList.Count.ShouldBe(1);
 
-            resultList.ShouldBe(_all_student);
+            resultList.ShouldBe(_all_studentDto);
         }
     }
 }

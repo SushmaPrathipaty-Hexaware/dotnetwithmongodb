@@ -1,6 +1,6 @@
 using NSubstitute;
 using dotnetwithmongodb.Test.Framework;
-using dotnetwithmongodb.Business.Services;
+using dotnetwithmongodb.BusinessServices.Services;
 using dotnetwithmongodb.Data.Interfaces;
 
 namespace dotnetwithmongodb.Test.Business.StudentServiceSpec

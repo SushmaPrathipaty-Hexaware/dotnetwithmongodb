@@ -6,6 +6,8 @@ using NSubstitute;
 using Shouldly;
 using Microsoft.AspNetCore.Mvc;
 using dotnetwithmongodb.Entities.Entities;
+using dotnetwithmongodb.Api.Controllers;
+using dotnetwithmongodb.BusinessServices.Interfaces;
 
 namespace dotnetwithmongodb.Test.Api.StudentControllerSpec
 {

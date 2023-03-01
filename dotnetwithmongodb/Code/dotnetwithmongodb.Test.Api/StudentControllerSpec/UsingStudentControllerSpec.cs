@@ -1,7 +1,7 @@
 using NSubstitute;
 using dotnetwithmongodb.Test.Framework;
 using dotnetwithmongodb.Api.Controllers;
-using dotnetwithmongodb.Business.Interfaces;
+using dotnetwithmongodb.BusinessServices.Interfaces;
 
 
 namespace dotnetwithmongodb.Test.Api.StudentControllerSpec
